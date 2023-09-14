@@ -9,7 +9,7 @@ export const FormLabel = styled.label`
   flex-direction: column;
 `;
 
-export const FormInput = styled.input`
+export const Field = styled.input`
   width: 250px;
   height: 25px;
 `;

@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
+import { Formik, Form, Field } from 'formik';
 import PropTypes from 'prop-types';
-import { Form, FormLabel, FormInput, FormButton } from './PhonebookForm.styled';
+import { Form, FormLabel, Field, FormButton } from './PhonebookForm.styled';
 
-class PhonebookForm extends Component {
-  state = {
-    contactName: '',
-    number: '',
+const PhonebookForm = () => {
+  // state = {
+  //   contactName: '',
+  //   number: '',
+  // };
+
+  const initialValues = {
+    contactName: '123',
+    number: 'qweqwe',
   };
 
-  handleChange = event => {
+  const handleChange = event => {
     const { name, value } = event.target;
 
     this.setState({
@@ -39,14 +45,15 @@ class PhonebookForm extends Component {
     });
   };
 
-  render() {
-    const { handleSubmit, handleChange } = this;
-    const { contactName, number } = this.state;
-    return (
-      <Form onSubmit={handleSubmit}>
+  // render() {
+  //   const { handleSubmit, handleChange } = this;
+  //   const { contactName, number } = this.state;
+  return (
+    <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+      <Form>
         <FormLabel>
           Name
-          <FormInput
+          <Field
             value={contactName}
             onChange={handleChange}
             type="text"
@@ -59,7 +66,7 @@ class PhonebookForm extends Component {
 
         <FormLabel>
           Number
-          <FormInput
+          <Field
             value={number}
             onChange={handleChange}
             type="tel"
@@ -71,9 +78,10 @@ class PhonebookForm extends Component {
         </FormLabel>
         <FormButton type="submit">Add contact</FormButton>
       </Form>
-    );
-  }
-}
+    </Formik>
+  );
+  // }
+};
 
 PhonebookForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
